@@ -10,6 +10,10 @@ const {
 
 const { protect } = require('../middleware/authMiddleware')
 
+// Route into item router
+const itemRouter = require('./itemRoutes')
+router.use('/:profileId/items', itemRouter)
+
 router.route('/').get(protect, getProfiles).post(protect, createProfile)
 
 router

@@ -1,7 +1,7 @@
 function Home() {
   return (
     <>
-      <div className='text-3xl font-bold bg-primary text-base-100 underline'>
+      <div className='text-3xl font-bold flex-1 underline h-full'>
         Home page
       </div>
     </>

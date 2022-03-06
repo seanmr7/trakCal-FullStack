@@ -15,9 +15,6 @@ function Navbar() {
       <div className='hidden md:flex md:flex-none'>
         <ul className='menu menu-horizontal p-0'>
           <li>
-            <Link to='/about'>About</Link>
-          </li>
-          <li>
             <Link to='/sign-in'>Log In/Out</Link>
           </li>
           <li>

@@ -1,11 +1,12 @@
 import { FaGithub } from 'react-icons/fa'
 import { FaLink } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 function Footer() {
   return (
     <footer className='footer items-center bg-neutral text-neurtal-content p-4 justify-self-end text-base-100'>
       <div className='items-center grid-flow-col'>
-        <p>Copyright © 2022 - All right reserved</p>
+        <Link to='/about'>About this project</Link>
       </div>
       <div className='grid-flow-col gap-4 md:place-self-center md:justify-self-end'>
         <a

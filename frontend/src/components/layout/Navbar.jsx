@@ -18,10 +18,10 @@ function Navbar() {
             <Link to='/about'>About</Link>
           </li>
           <li>
-            <a>Log In/Out</a>
+            <Link to='/sign-in'>Log In/Out</Link>
           </li>
           <li>
-            <a>Profiles</a>
+            <Link to='/sign-up'>Signup</Link>
           </li>
         </ul>
       </div>

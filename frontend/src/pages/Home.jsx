@@ -1,9 +1,15 @@
+import FoodItemForm from '../components/foodItems/FoodItemForm'
+import FoodItemList from '../components/foodItems/FoodItemList'
+
 function Home() {
   return (
     <>
-      <div className='text-3xl font-bold flex-1 underline h-full'>
-        Home page
-      </div>
+      <main className='h-full'>
+        <div className='container mx-auto px-6 md:px-24'>
+          <FoodItemForm />
+          <FoodItemList />
+        </div>
+      </main>
     </>
   )
 }

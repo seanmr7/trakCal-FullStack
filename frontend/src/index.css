@@ -19,3 +19,7 @@
   color: #00897b;
   transition: 200ms;
 }
+
+#food-list li {
+  border-bottom: 1px solid #c9c9c9;
+}

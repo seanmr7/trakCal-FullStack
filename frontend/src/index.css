@@ -3,9 +3,12 @@
 @tailwind utilities;
 
 .input {
+  background-color: rgb(249 250 251);
+}
+
+#food-form .input {
   border-radius: 0;
   border-bottom: 1px solid #9e9e9e;
-  background-color: rgb(249 250 251);
   padding: 0;
   transition: 200ms;
 }

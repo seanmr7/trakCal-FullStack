@@ -25,7 +25,7 @@ function FoodItemForm() {
       style={{ borderRadius: '5px' }}>
       <h1 className='text-3xl mb-3'>Add Meal / Food</h1>
 
-      <form onSubmit={onSubmit}>
+      <form id='food-form' onSubmit={onSubmit}>
         <div className='flex flex-col md:flex-row'>
           <div className='form-control mb-5 md:mr-5 md:w-full'>
             <label htmlFor='name' className='label p-0 text-sm font-light'>

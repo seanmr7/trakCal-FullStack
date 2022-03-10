@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import AuthContext from '../context/auth/AuthContext'
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ function Signup() {
     password: '',
     password2: '',
   })
+
+  const { register } = useContext(AuthContext)
 
   const { email, password, password2 } = formData
 
@@ -19,6 +22,15 @@ function Signup() {
 
   const onSubmit = (e) => {
     e.preventDefault()
+
+    if (password !== password2) {
+      window.alert('Passwords must match')
+    } else {
+      register({
+        email,
+        password,
+      })
+    }
   }
 
   return (

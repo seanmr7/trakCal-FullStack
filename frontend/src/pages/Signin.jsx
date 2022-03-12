@@ -1,12 +1,14 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import AuthContext from '../context/auth/AuthContext'
 
 function Signin() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
-
+  const { login, isError, clearErrors } = useContext(AuthContext)
+  const navigate = useNavigate()
   const { email, password } = formData
 
   const onChange = (e) => {
@@ -18,6 +20,14 @@ function Signin() {
 
   const onSubmit = (e) => {
     e.preventDefault()
+
+    login(formData)
+    if (isError) {
+      window.alert('Error occured')
+      clearErrors()
+    } else {
+      navigate('/')
+    }
   }
 
   return (
@@ -47,7 +57,7 @@ function Signin() {
           <div>
             <input
               type='submit'
-              value='Sign Up'
+              value='Sign In'
               className='btn btn-primary w-full mb-2'
             />
             <span className='text-sm font-light'>

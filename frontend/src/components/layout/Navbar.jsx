@@ -23,7 +23,7 @@ function Navbar() {
               <p onClick={logout}>Logout</p>
             </li>
             <li>
-              <p>Profiles</p>
+              <label for='profiles-modal'>Profiles</label>
             </li>
           </ul>
         ) : (

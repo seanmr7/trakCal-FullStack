@@ -5,12 +5,14 @@ const authReducer = (state, action) => {
         ...state,
         user: action.payload,
         isAuthenticated: true,
+        isSuccess: true,
       }
     case 'LOGIN_SUCCESS':
       return {
         ...state,
         user: action.payload,
         isAuthenticated: true,
+        isSuccess: true,
       }
     case 'AUTH_ERROR':
     case 'LOGIN_ERROR':
@@ -25,9 +27,10 @@ const authReducer = (state, action) => {
         user: null,
         isAuthenticated: false,
       }
-    case 'CLEAR_ERRORS':
+    case 'RESET':
       return {
         ...state,
+        isSuccess: false,
         isError: false,
         message: '',
       }

@@ -7,8 +7,7 @@ function FoodItemList() {
     { name: 'Cookies', calories: 800 },
     { name: 'Steak Dinner', calories: 200 },
   ])
-  console.log(foodItems)
-  foodItems.forEach((food) => console.log(food))
+
   return (
     <ul id='food-list' className='m-3'>
       {foodItems.map((food, index) => (

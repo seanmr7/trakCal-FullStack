@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     if (user !== null) {
       const config = {
         headers: {
-          'Authorization': `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       }
       try {
@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
 
   const initialState = {
     user: user,
+    isSuccss: false,
     isError: false,
     isAuthenticated: user ? true : false,
     isLoading: false,
@@ -94,8 +95,8 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: 'LOGOUT' })
   }
 
-  const clearErrors = () => {
-    dispatch({ type: 'CLEAR_ERRORS' })
+  const reset = () => {
+    dispatch({ type: 'RESET' })
   }
 
   return (
@@ -106,7 +107,7 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
-        clearErrors,
+        reset,
       }}>
       {children}
     </AuthContext.Provider>

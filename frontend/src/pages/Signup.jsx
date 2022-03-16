@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from '../context/auth/AuthContext'
 
@@ -8,10 +8,23 @@ function Signup() {
     password: '',
     password2: '',
   })
+
+  const { user, register, isSuccess, isError, reset } = useContext(AuthContext)
   const navigate = useNavigate()
-  const { register } = useContext(AuthContext)
 
   const { email, password, password2 } = formData
+
+  useEffect(() => {
+    if (isError) {
+      window.alert('error')
+      reset()
+    }
+
+    if (isSuccess || user) {
+      navigate('/')
+      reset()
+    }
+  }, [isError, isSuccess, navigate, reset, user])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -30,7 +43,6 @@ function Signup() {
         email,
         password,
       })
-      navigate('/')
     }
   }
 

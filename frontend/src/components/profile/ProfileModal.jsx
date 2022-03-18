@@ -8,7 +8,7 @@ function ProfileModal() {
 
   return (
     <>
-      <input type='checkbox' id='profiles-modal' class='modal-toggle' />
+      <input type='checkbox' id='profiles-modal' className='modal-toggle' />
       <div className='modal'>
         <div className='modal-box h-screen relavtive flex flex-col lg:h-3/5 lg:w-full'>
           <label htmlFor='profiles-modal' className='flex justify-between mb-1'>

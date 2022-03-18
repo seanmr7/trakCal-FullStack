@@ -27,3 +27,11 @@
 #food-list li {
   border-bottom: 1px solid #c9c9c9;
 }
+
+.dropdown-content {
+  border-radius: 1px;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  z-index: 10;
+}

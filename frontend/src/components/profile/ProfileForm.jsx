@@ -1,8 +1,24 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import ProfileContext from '../../context/profile/ProfileContext'
 
 function ProfileForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    heightFeet: '',
+    heightInch: '',
+    weight: '',
+  })
+
+  const { name, heightFeet, heightInch, weight } = formData
+
   const { toggleProfileForm } = useContext(ProfileContext)
+
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }))
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -19,8 +35,8 @@ function ProfileForm() {
             <input
               type='text'
               id='name'
-              value=''
-              onChange={console.log('change')}
+              value={name}
+              onChange={onChange}
               placeholder='Jake'
               className='input input-sm'
             />
@@ -33,17 +49,17 @@ function ProfileForm() {
               <div className='flex'>
                 <input
                   type='number'
-                  id='height-feet'
-                  value=''
-                  onChange={console.log('change')}
+                  id='heightFeet'
+                  value={heightFeet}
+                  onChange={onChange}
                   placeholder='5'
                   className='input input-sm w-1/4 mr-2'
                 />
                 <input
                   type='number'
-                  id='height-inch'
-                  value=''
-                  onChange={console.log('change')}
+                  id='heightInch'
+                  value={heightInch}
+                  onChange={onChange}
                   placeholder='6'
                   className='input input-sm w-2/5'
                 />
@@ -56,8 +72,8 @@ function ProfileForm() {
               <input
                 type='number'
                 id='weight'
-                value=''
-                onChange={console.log('change')}
+                value={weight}
+                onChange={onChange}
                 placeholder='150'
                 className='input input-sm mr-2'
               />

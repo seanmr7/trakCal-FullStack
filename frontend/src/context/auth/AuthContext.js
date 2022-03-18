@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   let user
   ;(async () => {
     user = JSON.parse(localStorage.getItem('user'))
-    console.log(user)
     if (user !== null) {
       const config = {
         headers: {

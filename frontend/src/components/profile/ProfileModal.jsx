@@ -1,10 +1,16 @@
-import { useContext } from 'react'
+import { useEffect, useContext } from 'react'
+import AuthContext from '../../context/auth/AuthContext'
 import ProfileContext from '../../context/profile/ProfileContext'
 import ProfileForm from './ProfileForm'
 import ProfileList from './ProfileList'
 
 function ProfileModal() {
-  const { showProfileForm } = useContext(ProfileContext)
+  const { profiles, getProfiles, showProfileForm } = useContext(ProfileContext)
+  const { user } = useContext(AuthContext)
+
+  useEffect(() => {
+    getProfiles(user.token)
+  }, [])
 
   return (
     <>

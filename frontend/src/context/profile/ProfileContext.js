@@ -18,7 +18,6 @@ export const ProfileProvider = ({ children }) => {
   const [state, dispatch] = useReducer(profileReducer, initialState)
 
   const getProfiles = async (token) => {
-    console.log(token)
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -33,6 +32,29 @@ export const ProfileProvider = ({ children }) => {
     })
   }
 
+  const createProfile = async (profileData, token) => {
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    }
+
+    const res = await axios.post('/api/profiles', profileData, config)
+
+    dispatch({
+      type: 'CREATE_PROFILE',
+      payload: res.data,
+    })
+  }
+
+  const makeActiveProfile = (id) => {
+    console.log(id)
+    dispatch({
+      type: 'MAKE_ACTIVE',
+      payload: id,
+    })
+  }
+
   const toggleProfileForm = () => {
     dispatch({ type: 'TOGGLE_PROFILE_FORM' })
   }
@@ -43,6 +65,8 @@ export const ProfileProvider = ({ children }) => {
         ...state,
         dispatch,
         getProfiles,
+        createProfile,
+        makeActiveProfile,
         toggleProfileForm,
       }}>
       {children}

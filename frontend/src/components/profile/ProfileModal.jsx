@@ -5,12 +5,7 @@ import ProfileForm from './ProfileForm'
 import ProfileList from './ProfileList'
 
 function ProfileModal() {
-  const { profiles, getProfiles, showProfileForm } = useContext(ProfileContext)
-  const { user } = useContext(AuthContext)
-
-  useEffect(() => {
-    getProfiles(user.token)
-  }, [])
+  const { showProfileForm } = useContext(ProfileContext)
 
   return (
     <>

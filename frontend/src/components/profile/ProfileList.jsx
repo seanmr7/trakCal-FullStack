@@ -4,14 +4,13 @@ import AuthContext from '../../context/auth/AuthContext'
 import ProfileListItem from './ProfileListItem'
 
 function ProfileList() {
-  const { profiles, getProfiles, showProfileForm } = useContext(ProfileContext)
+  const { profiles, getProfiles, toggleProfileForm } =
+    useContext(ProfileContext)
   const { user } = useContext(AuthContext)
 
   useEffect(() => {
     getProfiles(user.token)
   }, [])
-
-  const { toggleProfileForm } = useContext(ProfileContext)
 
   const onClick = () => {
     toggleProfileForm()

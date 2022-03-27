@@ -1,7 +1,10 @@
 import { useContext, useState } from 'react'
 import ProfileContext from '../../context/profile/ProfileContext'
+import AuthContext from '../../context/auth/AuthContext'
 
 function ProfileForm() {
+  const { user } = useContext(AuthContext)
+
   const [formData, setFormData] = useState({
     name: '',
     heightFeet: '',
@@ -11,7 +14,7 @@ function ProfileForm() {
 
   const { name, heightFeet, heightInch, weight } = formData
 
-  const { toggleProfileForm } = useContext(ProfileContext)
+  const { toggleProfileForm, createProfile } = useContext(ProfileContext)
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -22,6 +25,23 @@ function ProfileForm() {
 
   const onSubmit = (e) => {
     e.preventDefault()
+
+    if (
+      name === '' ||
+      heightFeet === '' ||
+      heightInch === '' ||
+      weight === ''
+    ) {
+      alert('Please fill in all fields')
+      return
+    }
+
+    const profileData = {
+      name: name,
+      height: heightFeet * 12 + heightInch,
+      weight: weight,
+    }
+    createProfile(profileData, user.token)
     toggleProfileForm()
   }
   return (

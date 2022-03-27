@@ -8,24 +8,27 @@ import Signin from './pages/Signin'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ProfileModal from './components/profile/ProfileModal'
+import { FoodProvider } from './context/food/FoodContext'
 
 function App() {
   return (
     <AuthProvider>
       <ProfileProvider>
-        <div className='h-screen flex flex-col'>
-          <Router>
-            <Navbar />
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/sign-up' element={<Signup />} />
-              <Route path='/sign-in' element={<Signin />} />
-            </Routes>
-            <ProfileModal />
-            <Footer />
-          </Router>
-        </div>
+        <FoodProvider>
+          <div className='h-screen flex flex-col'>
+            <Router>
+              <Navbar />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/sign-up' element={<Signup />} />
+                <Route path='/sign-in' element={<Signin />} />
+              </Routes>
+              <ProfileModal />
+              <Footer />
+            </Router>
+          </div>
+        </FoodProvider>
       </ProfileProvider>
     </AuthProvider>
   )

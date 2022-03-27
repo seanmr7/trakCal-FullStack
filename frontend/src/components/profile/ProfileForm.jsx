@@ -41,6 +41,12 @@ function ProfileForm() {
     }))
   }
 
+  const onCancel = (e) => {
+    e.preventDefault()
+    setEditState(false)
+    toggleProfileForm()
+  }
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -56,7 +62,7 @@ function ProfileForm() {
 
     const profileData = {
       name: name,
-      height: parseInt(heightFeet * 12 + heightInch),
+      height: parseInt(heightFeet) * 12 + parseInt(heightInch),
       weight: parseInt(weight),
     }
 
@@ -122,11 +128,26 @@ function ProfileForm() {
             </div>
           </div>
         </div>
-        <button
-          type='submit'
-          className='btn btn-primary btn-block shadow-md text-gray-50'>
-          Submit
-        </button>
+        {isEdit ? (
+          <div className='w-full flex'>
+            <button
+              type='submit'
+              className='flex-1 btn btn-primary btn-block shadow-md mx-2 text-gray-50'>
+              Submit
+            </button>
+            <button
+              className='flex-1 btn btn-warning btn-block shadow-md mx-2 text-gray-50'
+              onClick={onCancel}>
+              Cancel
+            </button>
+          </div>
+        ) : (
+          <button
+            type='submit'
+            className='btn btn-primary btn-block shadow-md text-gray-50'>
+            Submit
+          </button>
+        )}
       </form>
     </div>
   )

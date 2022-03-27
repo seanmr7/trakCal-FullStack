@@ -12,10 +12,12 @@ function ProfileList() {
     getProfiles(user.token)
   }, [])
 
+  // Show or hide profile form
   const onClick = () => {
     setEditState(false)
     toggleProfileForm()
   }
+
   return (
     <div>
       <ul className='divide-y-2 divide-gray-200'>

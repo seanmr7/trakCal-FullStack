@@ -34,6 +34,7 @@ function ProfileForm() {
     }
   }, [isEdit, activeProfile])
 
+  // Change state to value entered in form
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -41,6 +42,7 @@ function ProfileForm() {
     }))
   }
 
+  // Cancels edit profile
   const onCancel = (e) => {
     e.preventDefault()
     setEditState(false)
@@ -50,6 +52,7 @@ function ProfileForm() {
   const onSubmit = (e) => {
     e.preventDefault()
 
+    // Check that all fields are filled in
     if (
       name === '' ||
       heightFeet === '' ||
@@ -60,18 +63,21 @@ function ProfileForm() {
       return
     }
 
+    // Create profile data object with sanitized values
     const profileData = {
       name: name,
       height: parseInt(heightFeet) * 12 + parseInt(heightInch),
       weight: parseInt(weight),
     }
 
+    // Check if a profile is being edited to run appropriate function
     if (isEdit) {
       editProfile(activeProfile._id, profileData, user.token)
     } else {
       createProfile(profileData, user.token)
     }
   }
+
   return (
     <div id='profile-form' className='container shadow-md bg-gray-50 p-3 mt-3'>
       <form onSubmit={onSubmit}>

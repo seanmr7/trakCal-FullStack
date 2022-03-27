@@ -8,6 +8,7 @@ function ProfileModal() {
   const { showProfileForm } = useContext(ProfileContext)
   const { user } = useContext(AuthContext)
 
+  // Profile modal will not be loaded if no user is logged in
   if (!user) {
     return null
   }

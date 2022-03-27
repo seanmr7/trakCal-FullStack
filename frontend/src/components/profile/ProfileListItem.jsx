@@ -21,6 +21,7 @@ function ProfileListItem({ profile }) {
   const heightInch = Math.floor(height % 12)
   const displayBMI = Math.round(bmi * 10) / 10
 
+  // Check if the user had a profile selected and assign class names to activeClass
   let activeClass = ''
   if (activeProfile !== undefined && _id === activeProfile._id) {
     activeClass = 'bg-primary text-secondary'
@@ -32,6 +33,7 @@ function ProfileListItem({ profile }) {
     setLocalStorage(profile)
   }
 
+  // Sets the edit state to true and shows the profile form
   const onEdit = () => {
     setEditState(true)
     if (showProfileForm) {
@@ -41,8 +43,8 @@ function ProfileListItem({ profile }) {
     }
   }
 
+  // Deletes profile
   const onDelete = (e) => {
-    console.log('delete')
     if (e.target.id === 'delete') {
       deleteProfile(_id, user.token)
     }

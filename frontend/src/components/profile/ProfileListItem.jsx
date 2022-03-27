@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { FaPen } from 'react-icons/fa'
 import { FaTimes } from 'react-icons/fa'
+import AuthContext from '../../context/auth/AuthContext'
 import ProfileContext from '../../context/profile/ProfileContext'
 
 function ProfileListItem({ profile }) {
@@ -11,7 +12,9 @@ function ProfileListItem({ profile }) {
     toggleProfileForm,
     setEditState,
     setLocalStorage,
+    deleteProfile,
   } = useContext(ProfileContext)
+  const { user } = useContext(AuthContext)
   const { name, height, weight, bmi, _id } = profile
 
   const heightFeet = Math.floor(height / 12)
@@ -19,7 +22,7 @@ function ProfileListItem({ profile }) {
   const displayBMI = Math.round(bmi * 10) / 10
 
   let activeClass = ''
-  if (activeProfile !== '' && _id === activeProfile._id) {
+  if (activeProfile !== undefined && _id === activeProfile._id) {
     activeClass = 'bg-primary text-secondary'
   }
 
@@ -29,12 +32,19 @@ function ProfileListItem({ profile }) {
     setLocalStorage(profile)
   }
 
-  const editProfile = () => {
+  const onEdit = () => {
     setEditState(true)
     if (showProfileForm) {
       return
     } else {
       toggleProfileForm()
+    }
+  }
+
+  const onDelete = (e) => {
+    console.log('delete')
+    if (e.target.id === 'delete') {
+      deleteProfile(_id, user.token)
     }
   }
 
@@ -47,8 +57,8 @@ function ProfileListItem({ profile }) {
         {name}, {heightFeet}' - {heightInch}", {weight} lbs, {displayBMI} BMI
       </p>
       <div className='flex gap-x-3 justify-center content-center items-center'>
-        <FaPen onClick={editProfile} />
-        <FaTimes />
+        <FaPen onClick={onEdit} />
+        <FaTimes id='delete' onClick={onDelete} />
       </div>
     </li>
   )

@@ -18,6 +18,7 @@ export const ProfileProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(profileReducer, initialState)
 
+  // Gets a users profiles
   const getProfiles = async (token) => {
     const config = {
       headers: {
@@ -40,6 +41,7 @@ export const ProfileProvider = ({ children }) => {
     }
   }
 
+  // Create a new profile
   const createProfile = async (profileData, token) => {
     const config = {
       headers: {
@@ -55,6 +57,7 @@ export const ProfileProvider = ({ children }) => {
     })
   }
 
+  // Edit an existing profile
   const editProfile = async (id, profileData, token) => {
     const config = {
       headers: {
@@ -67,10 +70,25 @@ export const ProfileProvider = ({ children }) => {
       type: 'EDIT_PROFILE',
       payload: res.data,
     })
-
-    console.log('Edit inside context')
   }
 
+  // Deletes a profile
+  const deleteProfile = async (id, token) => {
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    }
+
+    await axios.delete(`api/profiles/${id}`, config)
+
+    dispatch({
+      type: 'DELETE_PROFILE',
+      payload: id,
+    })
+  }
+
+  // Makes a profile the active profile
   const makeActiveProfile = (id) => {
     dispatch({
       type: 'MAKE_ACTIVE',
@@ -78,14 +96,17 @@ export const ProfileProvider = ({ children }) => {
     })
   }
 
+  // Sets the show form to true or false
   const toggleProfileForm = () => {
     dispatch({ type: 'TOGGLE_PROFILE_FORM' })
   }
 
+  // Sets the edit state to true or false
   const setEditState = (condition) => {
     dispatch({ type: 'SET_EDIT_STATE', payload: condition })
   }
 
+  // Commits active profile to local storage
   const setLocalStorage = (profile) => {
     localStorage.setItem('activeProfile', JSON.stringify(profile))
   }
@@ -98,6 +119,7 @@ export const ProfileProvider = ({ children }) => {
         getProfiles,
         createProfile,
         editProfile,
+        deleteProfile,
         makeActiveProfile,
         toggleProfileForm,
         setEditState,

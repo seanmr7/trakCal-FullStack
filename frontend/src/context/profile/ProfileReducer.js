@@ -22,6 +22,14 @@ const profileReducer = (state, action) => {
         isEdit: false,
         showProfileForm: false,
       }
+    case 'DELETE_PROFILE':
+      return {
+        ...state,
+        profiles: state.profiles.filter(
+          (profile) => profile._id !== action.payload
+        ),
+        activeProfile: {},
+      }
     case 'MAKE_ACTIVE':
       return {
         ...state,

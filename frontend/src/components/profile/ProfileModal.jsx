@@ -6,6 +6,11 @@ import ProfileList from './ProfileList'
 
 function ProfileModal() {
   const { showProfileForm } = useContext(ProfileContext)
+  const { user } = useContext(AuthContext)
+
+  if (!user) {
+    return null
+  }
 
   return (
     <>

@@ -125,7 +125,7 @@ const updateProfile = asyncHandler(async (req, res) => {
   const updatedProfile = await Profile.findByIdAndUpdate(
     req.params.id,
     req.body,
-    { new: true }
+    { new: true, upsert: true }
   )
 
   res.status(200).json(updatedProfile)

@@ -8,6 +8,7 @@ export const ProfileProvider = ({ children }) => {
   const initialState = {
     profiles: [],
     activeProfile: {},
+    isEdit: false,
     isSuccess: false,
     isError: false,
     isLoading: false,
@@ -30,6 +31,13 @@ export const ProfileProvider = ({ children }) => {
       type: 'GET_PROFILES',
       payload: res.data,
     })
+
+    if (localStorage.getItem('activeProfile')) {
+      const previousActiveProfile = JSON.parse(
+        localStorage.getItem('activeProfile')
+      )
+      makeActiveProfile(previousActiveProfile._id)
+    }
   }
 
   const createProfile = async (profileData, token) => {
@@ -47,8 +55,23 @@ export const ProfileProvider = ({ children }) => {
     })
   }
 
+  const editProfile = async (id, profileData, token) => {
+    const config = {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    }
+    const res = await axios.put(`/api/profiles/${id}`, profileData, config)
+
+    dispatch({
+      type: 'EDIT_PROFILE',
+      payload: res.data,
+    })
+
+    console.log('Edit inside context')
+  }
+
   const makeActiveProfile = (id) => {
-    console.log(id)
     dispatch({
       type: 'MAKE_ACTIVE',
       payload: id,
@@ -59,6 +82,14 @@ export const ProfileProvider = ({ children }) => {
     dispatch({ type: 'TOGGLE_PROFILE_FORM' })
   }
 
+  const setEditState = (condition) => {
+    dispatch({ type: 'SET_EDIT_STATE', payload: condition })
+  }
+
+  const setLocalStorage = (profile) => {
+    localStorage.setItem('activeProfile', JSON.stringify(profile))
+  }
+
   return (
     <ProfileContext.Provider
       value={{
@@ -66,8 +97,11 @@ export const ProfileProvider = ({ children }) => {
         dispatch,
         getProfiles,
         createProfile,
+        editProfile,
         makeActiveProfile,
         toggleProfileForm,
+        setEditState,
+        setLocalStorage,
       }}>
       {children}
     </ProfileContext.Provider>

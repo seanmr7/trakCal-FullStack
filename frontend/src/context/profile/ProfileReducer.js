@@ -10,6 +10,17 @@ const profileReducer = (state, action) => {
         ...state,
         profiles: [...state.profiles, action.payload],
         activeProfile: action.payload,
+        showProfileForm: false,
+      }
+    case 'EDIT_PROFILE':
+      return {
+        ...state,
+        profiles: state.profiles.map((profile) =>
+          profile._id === action.payload._id ? action.payload : profile
+        ),
+        activeProfile: action.payload,
+        isEdit: false,
+        showProfileForm: false,
       }
     case 'MAKE_ACTIVE':
       return {
@@ -22,6 +33,11 @@ const profileReducer = (state, action) => {
       return {
         ...state,
         showProfileForm: !state.showProfileForm,
+      }
+    case 'SET_EDIT_STATE':
+      return {
+        ...state,
+        isEdit: action.payload,
       }
     default:
       return state

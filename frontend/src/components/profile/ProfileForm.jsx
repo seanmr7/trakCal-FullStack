@@ -1,9 +1,17 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import ProfileContext from '../../context/profile/ProfileContext'
 import AuthContext from '../../context/auth/AuthContext'
 
 function ProfileForm() {
   const { user } = useContext(AuthContext)
+  const {
+    toggleProfileForm,
+    createProfile,
+    editProfile,
+    isEdit,
+    setEditState,
+    activeProfile,
+  } = useContext(ProfileContext)
 
   const [formData, setFormData] = useState({
     name: '',
@@ -14,7 +22,17 @@ function ProfileForm() {
 
   const { name, heightFeet, heightInch, weight } = formData
 
-  const { toggleProfileForm, createProfile } = useContext(ProfileContext)
+  useEffect(() => {
+    // Set formData to the active profile if the user is editing
+    if (isEdit) {
+      setFormData(() => ({
+        name: activeProfile.name,
+        heightFeet: Math.floor(activeProfile.height / 12),
+        heightInch: Math.floor(activeProfile.height % 12),
+        weight: activeProfile.weight,
+      }))
+    }
+  }, [isEdit, activeProfile])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -38,11 +56,15 @@ function ProfileForm() {
 
     const profileData = {
       name: name,
-      height: heightFeet * 12 + heightInch,
-      weight: weight,
+      height: parseInt(heightFeet * 12 + heightInch),
+      weight: parseInt(weight),
     }
-    createProfile(profileData, user.token)
-    toggleProfileForm()
+
+    if (isEdit) {
+      editProfile(activeProfile._id, profileData, user.token)
+    } else {
+      createProfile(profileData, user.token)
+    }
   }
   return (
     <div id='profile-form' className='container shadow-md bg-gray-50 p-3 mt-3'>

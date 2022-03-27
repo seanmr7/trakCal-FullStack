@@ -14,12 +14,6 @@ const profileSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    bmi: {
-      type: Number,
-      default: function () {
-        return (this.weight / this.height ** 2) * 704
-      },
-    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -27,8 +21,14 @@ const profileSchema = mongoose.Schema(
     },
   },
   {
+    toObject: { vituals: true },
+    toJSON: { virtuals: true },
     timestamps: true,
   }
 )
+
+profileSchema.virtual('bmi').get(function () {
+  return (this.weight / this.height ** 2) * 704
+})
 
 module.exports = mongoose.model('Profile', profileSchema)

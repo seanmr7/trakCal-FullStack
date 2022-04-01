@@ -1,17 +1,14 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import FoodContext from '../../context/food/FoodContext'
 import FoodItemListItem from './FoodItemListItem'
 
 function FoodItemList() {
-  const [foodItems, setFoodItem] = useState([
-    { name: 'Hamburger', calories: 500 },
-    { name: 'Cookies', calories: 800 },
-    { name: 'Steak Dinner', calories: 200 },
-  ])
+  const { food } = useContext(FoodContext)
 
   return (
     <ul id='food-list' className='m-3'>
-      {foodItems.map((food, index) => (
-        <FoodItemListItem key={index} food={food} />
+      {food.map((foodItem) => (
+        <FoodItemListItem key={foodItem._id} food={foodItem} />
       ))}
     </ul>
   )

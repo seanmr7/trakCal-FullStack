@@ -1,16 +1,10 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import ProfileContext from '../../context/profile/ProfileContext'
-import AuthContext from '../../context/auth/AuthContext'
 import ProfileListItem from './ProfileListItem'
 
 function ProfileList() {
-  const { profiles, getProfiles, toggleProfileForm, setEditState } =
+  const { profiles, toggleProfileForm, setEditState } =
     useContext(ProfileContext)
-  const { user } = useContext(AuthContext)
-
-  useEffect(() => {
-    getProfiles(user.token)
-  }, [])
 
   // Show or hide profile form
   const onClick = () => {

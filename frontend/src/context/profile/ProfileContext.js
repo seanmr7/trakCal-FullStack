@@ -32,12 +32,17 @@ export const ProfileProvider = ({ children }) => {
       type: 'GET_PROFILES',
       payload: res.data,
     })
-
     if (localStorage.getItem('activeProfile')) {
-      const previousActiveProfile = JSON.parse(
-        localStorage.getItem('activeProfile')
+      const previousActiveProfile = res.data.find(
+        (profile) =>
+          profile._id === JSON.parse(localStorage.getItem('activeProfile'))._id
       )
-      makeActiveProfile(previousActiveProfile._id)
+
+      if (previousActiveProfile === undefined) {
+        return
+      } else {
+        makeActiveProfile(previousActiveProfile._id)
+      }
     }
   }
 

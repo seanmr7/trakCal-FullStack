@@ -22,7 +22,7 @@ const getItems = asyncHandler(async (req, res) => {
     throw new Error('User not authorized')
   }
 
-  const items = await Item.find({ item: req.params.profileId })
+  const items = await Item.find({ profile: profile._id })
 
   res.status(200).json(items)
 })

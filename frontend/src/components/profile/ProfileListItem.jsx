@@ -59,8 +59,12 @@ function ProfileListItem({ profile }) {
         {name}, {heightFeet}' - {heightInch}", {weight} lbs, {displayBMI} BMI
       </p>
       <div className='flex gap-x-3 justify-center content-center items-center'>
-        <FaPen onClick={onEdit} />
-        <FaTimes id='delete' onClick={onDelete} />
+        <button id='edit' onClick={onEdit}>
+          <FaPen style={{ pointerEvents: 'none' }} />
+        </button>
+        <button id='delete' onClick={onDelete}>
+          <FaTimes style={{ pointerEvents: 'none' }} />
+        </button>
       </div>
     </li>
   )

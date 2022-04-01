@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { Navigate, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import Calories from '../components/foodItems/Calories'
 import ProfileContext from '../context/profile/ProfileContext'
 import AuthContext from '../context/auth/AuthContext'
@@ -37,7 +37,10 @@ function Home() {
       <main className='h-full'>
         <div className='container mx-auto px-6 md:px-24'>
           {Object.keys(activeProfile).length === 0 ? (
-            <ProfileForm />
+            <>
+              <h1 className='text-2xl'>Create a profile to start tracking</h1>
+              <ProfileForm />
+            </>
           ) : (
             <FoodItemForm />
           )}

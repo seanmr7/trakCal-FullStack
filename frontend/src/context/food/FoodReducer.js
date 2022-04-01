@@ -43,6 +43,7 @@ const profileReducer = (state, action) => {
     case 'DEFAULT':
       return {
         ...state,
+        food: [],
       }
     default:
       return state

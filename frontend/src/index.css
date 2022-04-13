@@ -35,3 +35,11 @@
   top: 50px;
   z-index: 10;
 }
+
+.dates-modal {
+  position: absolute;
+  right: 0;
+  border-radius: 0;
+  height: 100vh;
+  max-height: none;
+}

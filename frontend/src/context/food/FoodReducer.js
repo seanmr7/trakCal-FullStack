@@ -40,6 +40,11 @@ const profileReducer = (state, action) => {
         ...state,
         isEdit: action.payload,
       }
+    case 'ACTIVE_DATE':
+      return {
+        ...state,
+        activeDate: action.payload,
+      }
     case 'DEFAULT':
       return {
         ...state,

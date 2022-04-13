@@ -1,18 +1,19 @@
 import { useContext, useEffect, useState } from 'react'
 import FoodContext from '../../context/food/FoodContext'
+import { filterByDate } from '../../context/food/FoodActions'
 
 function Calories() {
   const [calories, setCalories] = useState(0)
 
-  const { food } = useContext(FoodContext)
+  const { food, activeDate } = useContext(FoodContext)
 
   useEffect(() => {
     // Reset calories to 0 and sum total calories from food array
     setCalories(0)
-    food.forEach((food) =>
+    filterByDate(food, activeDate).forEach((food) =>
       setCalories((prevState) => prevState + food.calories)
     )
-  }, [food])
+  }, [food, activeDate])
 
   return (
     <h1

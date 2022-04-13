@@ -9,6 +9,7 @@ import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import ProfileModal from './components/profile/ProfileModal'
 import { FoodProvider } from './context/food/FoodContext'
+import DateListModal from './components/dates/DateListModal'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path='/sign-in' element={<Signin />} />
               </Routes>
               <ProfileModal />
+              <DateListModal />
               <Footer />
             </Router>
           </div>

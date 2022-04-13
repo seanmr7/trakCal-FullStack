@@ -37,6 +37,9 @@ function NavbarList(props) {
         <li>
           <label htmlFor='profiles-modal'>Profiles</label>
         </li>
+        <li>
+          <label htmlFor='dates-modal'>Prev Logs</label>
+        </li>
       </ul>
     )
   }
@@ -73,6 +76,11 @@ function NavbarList(props) {
           <li>
             <label className='text-lg' htmlFor='profiles-modal'>
               Profiles
+            </label>
+          </li>
+          <li>
+            <label className='text-lg' htmlFor='dates-modal'>
+              Prev Logs
             </label>
           </li>
         </ul>

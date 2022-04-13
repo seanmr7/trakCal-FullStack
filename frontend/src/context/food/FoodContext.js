@@ -8,6 +8,7 @@ export const FoodProvider = ({ children }) => {
   const initialState = {
     food: [],
     activeFood: {},
+    activeDate: new Date().toISOString().slice(0, 10),
     isEdit: false,
     isSuccess: false,
     isError: false,
@@ -122,6 +123,14 @@ export const FoodProvider = ({ children }) => {
     dispatch({ type: 'SET_EDIT_STATE', payload: bool })
   }
 
+  const makeActiveDate = (date) => {
+    console.log(date)
+    dispatch({
+      type: 'ACTIVE_DATE',
+      payload: date,
+    })
+  }
+
   return (
     <FoodContext.Provider
       value={{
@@ -133,6 +142,7 @@ export const FoodProvider = ({ children }) => {
         deleteFood,
         makeActiveFood,
         setEditState,
+        makeActiveDate,
       }}>
       {children}
     </FoodContext.Provider>

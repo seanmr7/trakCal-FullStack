@@ -34,8 +34,7 @@ export const ProfileProvider = ({ children }) => {
     })
     if (localStorage.getItem('activeProfile')) {
       const previousActiveProfile = res.data.find(
-        (profile) =>
-          profile._id === JSON.parse(localStorage.getItem('activeProfile'))._id
+        (profile) => profile._id === JSON.parse(localStorage.getItem('activeProfile'))._id
       )
 
       if (previousActiveProfile === undefined) {

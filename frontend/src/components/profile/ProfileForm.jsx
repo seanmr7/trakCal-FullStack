@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import ProfileContext from '../../context/profile/ProfileContext'
 import AuthContext from '../../context/auth/AuthContext'
+import { toast } from 'react-toastify'
 
 function ProfileForm() {
   const { user } = useContext(AuthContext)
@@ -53,13 +54,8 @@ function ProfileForm() {
     e.preventDefault()
 
     // Check that all fields are filled in
-    if (
-      name === '' ||
-      heightFeet === '' ||
-      heightInch === '' ||
-      weight === ''
-    ) {
-      alert('Please fill in all fields')
+    if (name === '' || heightFeet === '' || heightInch === '' || weight === '') {
+      toast.error('Please fill in all fields')
       return
     }
 
@@ -73,8 +69,10 @@ function ProfileForm() {
     // Check if a profile is being edited to run appropriate function
     if (isEdit) {
       editProfile(activeProfile._id, profileData, user.token)
+      toast.success('Profile edited!')
     } else {
       createProfile(profileData, user.token)
+      toast.success('Profile created!')
     }
   }
 

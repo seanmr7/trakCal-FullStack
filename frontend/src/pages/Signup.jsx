@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import AuthContext from '../context/auth/AuthContext'
 
 function Signup() {
@@ -16,7 +17,7 @@ function Signup() {
 
   useEffect(() => {
     if (isError) {
-      window.alert('error')
+      toast.error('Something went wrong. Please try again.')
       reset()
     }
 

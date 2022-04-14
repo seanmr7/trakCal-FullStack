@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import { AuthProvider } from './context/auth/AuthContext'
 import { ProfileProvider } from './context/profile/ProfileContext'
 import Home from './pages/Home'
@@ -10,6 +11,7 @@ import Footer from './components/layout/Footer'
 import ProfileModal from './components/profile/ProfileModal'
 import { FoodProvider } from './context/food/FoodContext'
 import DateListModal from './components/dates/DateListModal'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
               <Footer />
             </Router>
           </div>
+          <ToastContainer />
         </FoodProvider>
       </ProfileProvider>
     </AuthProvider>

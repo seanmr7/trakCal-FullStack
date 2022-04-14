@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react'
 import { FaPlus, FaTimes } from 'react-icons/fa'
 import { FaPen } from 'react-icons/fa'
+import { toast } from 'react-toastify'
 import AuthContext from '../../context/auth/AuthContext'
 import FoodContext from '../../context/food/FoodContext'
 import ProfileContext from '../../context/profile/ProfileContext'
@@ -45,7 +46,7 @@ function FoodItemForm() {
     e.preventDefault()
 
     if (name === '' || calories === '') {
-      alert('Please fill in all fields')
+      toast.error('Please fill in all fields')
       return
     }
 
@@ -57,8 +58,10 @@ function FoodItemForm() {
 
     if (isEdit) {
       editFood(activeFood._id, user.token, activeProfile._id, foodData)
+      toast.success('Item has been edited!')
     } else {
       createFood(foodData, user.token, activeProfile._id)
+      toast.success('Item has been added!')
     }
 
     // Reset form values
@@ -110,23 +113,17 @@ function FoodItemForm() {
         </div>
         {isEdit ? (
           <div className='flex gap-3'>
-            <button
-              type='submit'
-              className='btn btn-warning shadow-md text-gray-50'>
+            <button type='submit' className='btn btn-warning shadow-md text-gray-50'>
               <FaPen style={{ marginRight: '4px' }} />
               Edit
             </button>
-            <button
-              className='btn btn-accent shadow-md text-gray-50'
-              onClick={onCancel}>
+            <button className='btn btn-accent shadow-md text-gray-50' onClick={onCancel}>
               <FaTimes style={{ marginRight: '4px' }} />
               Cancel
             </button>
           </div>
         ) : (
-          <button
-            type='submit'
-            className='btn btn-primary shadow-md text-gray-50'>
+          <button type='submit' className='btn btn-primary shadow-md text-gray-50'>
             <FaPlus style={{ marginRight: '4px' }} />
             Add Meal
           </button>

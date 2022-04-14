@@ -27,14 +27,10 @@ function DateListModal() {
     <>
       <input type='checkbox' id='dates-modal' className='modal-toggle' />
       <div className='modal h-full'>
-        <div className='dates-modal modal-box w-full h-screen relavtive flex flex-col md:w-min'>
-          <label
-            htmlFor='dates-modal'
-            className='flex w-content justify-between mb-4'>
+        <div className='modal-box w-full h-screen relavtive flex flex-col md:w-min'>
+          <label htmlFor='dates-modal' className='flex w-content justify-between mb-4'>
             <h3 className='text-xl font-medium w-max mx-4'>Previous Dates</h3>
-            <p className='btn btn-primary btn-circle btn-sm shadow-md text-gray-50'>
-              x
-            </p>
+            <p className='btn btn-primary btn-circle btn-sm shadow-md text-gray-50'>x</p>
           </label>
           <DateList dates={dates} />
         </div>

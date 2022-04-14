@@ -12,6 +12,7 @@ function ProfileForm() {
     isEdit,
     setEditState,
     activeProfile,
+    loading,
   } = useContext(ProfileContext)
 
   const [formData, setFormData] = useState({
@@ -136,20 +137,27 @@ function ProfileForm() {
           <div className='w-full flex'>
             <button
               type='submit'
-              className='flex-1 btn btn-primary btn-block shadow-md mx-2 text-gray-50'>
-              Submit
+              className={`flex-1 btn btn-primary btn-block shadow-md mx-2 text-gray-50 ${
+                loading && 'loading'
+              }`}
+              disabled={loading && true}>
+              {loading ? 'Loading...' : 'Submit'}
             </button>
             <button
               className='flex-1 btn btn-warning btn-block shadow-md mx-2 text-gray-50'
-              onClick={onCancel}>
+              onClick={onCancel}
+              disabled={loading && true}>
               Cancel
             </button>
           </div>
         ) : (
           <button
             type='submit'
-            className='btn btn-primary btn-block shadow-md text-gray-50'>
-            Submit
+            className={`btn btn-primary btn-block shadow-md text-gray-50 ${
+              loading && 'loading'
+            }`}
+            disabled={loading && true}>
+            {loading ? 'Loading...' : 'Submit'}
           </button>
         )}
       </form>

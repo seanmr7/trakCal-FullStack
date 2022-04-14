@@ -4,11 +4,13 @@ const profileReducer = (state, action) => {
       return {
         ...state,
         food: action.payload,
+        loading: false,
       }
     case 'CREATE_FOOD':
       return {
         ...state,
         food: [...state.food, action.payload],
+        loading: false,
       }
     case 'DELETE_FOOD':
       return {
@@ -23,6 +25,7 @@ const profileReducer = (state, action) => {
         ),
         activeFood: {},
         isEdit: false,
+        loading: false,
       }
     case 'MAKE_ACTIVE':
       return {
@@ -49,6 +52,11 @@ const profileReducer = (state, action) => {
       return {
         ...state,
         food: [],
+      }
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: true,
       }
     default:
       return state

@@ -20,9 +20,7 @@ function ProfileModal() {
         <div className='modal-box h-screen relavtive flex flex-col lg:h-3/5 lg:w-full'>
           <label htmlFor='profiles-modal' className='flex justify-between mb-1'>
             <h3 className='text-xl font-medium'>Profiles</h3>
-            <p className='btn btn-primary btn-circle btn-sm shadow-md text-gray-50'>
-              x
-            </p>
+            <p className='btn btn-primary btn-circle btn-sm shadow-md text-gray-50'>x</p>
           </label>
           <ProfileList />
           {showProfileForm && <ProfileForm />}

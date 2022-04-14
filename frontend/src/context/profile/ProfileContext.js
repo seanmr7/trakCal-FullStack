@@ -20,6 +20,8 @@ export const ProfileProvider = ({ children }) => {
 
   // Gets a users profiles
   const getProfiles = async (token) => {
+    setLoading()
+
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -47,6 +49,8 @@ export const ProfileProvider = ({ children }) => {
 
   // Create a new profile
   const createProfile = async (profileData, token) => {
+    setLoading()
+
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -63,6 +67,8 @@ export const ProfileProvider = ({ children }) => {
 
   // Edit an existing profile
   const editProfile = async (id, profileData, token) => {
+    setLoading()
+
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -113,6 +119,12 @@ export const ProfileProvider = ({ children }) => {
   // Commits active profile to local storage
   const setLocalStorage = (profile) => {
     localStorage.setItem('activeProfile', JSON.stringify(profile))
+  }
+
+  const setLoading = () => {
+    dispatch({
+      type: 'SET_LOADING',
+    })
   }
 
   return (

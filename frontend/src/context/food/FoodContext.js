@@ -20,6 +20,8 @@ export const FoodProvider = ({ children }) => {
 
   // Gets a profile's foods
   const getFood = async (token, profileId) => {
+    setLoading()
+
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -49,6 +51,8 @@ export const FoodProvider = ({ children }) => {
 
   // Create a new food item
   const createFood = async (foodData, token, profileId) => {
+    setLoading()
+
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -56,11 +60,7 @@ export const FoodProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.post(
-        `/api/profiles/${profileId}/items`,
-        foodData,
-        config
-      )
+      const res = await axios.post(`/api/profiles/${profileId}/items`, foodData, config)
 
       dispatch({
         type: 'CREATE_FOOD',
@@ -76,6 +76,8 @@ export const FoodProvider = ({ children }) => {
 
   // Edit an existing food item
   const editFood = async (id, token, profileId, itemData) => {
+    setLoading()
+
     const config = {
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -128,6 +130,12 @@ export const FoodProvider = ({ children }) => {
     dispatch({
       type: 'ACTIVE_DATE',
       payload: date,
+    })
+  }
+
+  const setLoading = () => {
+    dispatch({
+      type: 'SET_LOADING',
     })
   }
 

@@ -13,7 +13,7 @@ function FoodItemForm() {
   })
 
   const { name, calories } = formData
-  const { createFood, isEdit, activeFood, editFood, setEditState } =
+  const { createFood, isEdit, activeFood, editFood, setEditState, loading } =
     useContext(FoodContext)
 
   const { user } = useContext(AuthContext)
@@ -113,19 +113,28 @@ function FoodItemForm() {
         </div>
         {isEdit ? (
           <div className='flex gap-3'>
-            <button type='submit' className='btn btn-warning shadow-md text-gray-50'>
+            <button
+              type='submit'
+              className='btn btn-warning shadow-md text-gray-50'
+              disabled={loading && true}>
               <FaPen style={{ marginRight: '4px' }} />
-              Edit
+              {loading ? 'Loading...' : 'Edit'}
             </button>
-            <button className='btn btn-accent shadow-md text-gray-50' onClick={onCancel}>
+            <button
+              className='btn btn-accent shadow-md text-gray-50'
+              onClick={onCancel}
+              disabled={loading && true}>
               <FaTimes style={{ marginRight: '4px' }} />
               Cancel
             </button>
           </div>
         ) : (
-          <button type='submit' className='btn btn-primary shadow-md text-gray-50'>
+          <button
+            type='submit'
+            className='btn btn-primary shadow-md text-gray-50'
+            disabled={loading && true}>
             <FaPlus style={{ marginRight: '4px' }} />
-            Add Meal
+            {loading ? 'Loading...' : 'Add Meal'}
           </button>
         )}
       </form>
